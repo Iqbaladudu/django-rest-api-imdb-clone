@@ -1,2 +1,2 @@
 # Ignoring Database file
-.sqlite3
+db.sqlite3

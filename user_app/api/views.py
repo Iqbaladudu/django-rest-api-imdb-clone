@@ -4,6 +4,7 @@ from .serializers import RegistrationSerializer
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
 from .. import models
 
 
@@ -27,8 +28,14 @@ def registration_view(request):
             data['username'] = account.username
             data['email'] = account.email
 
-            token = Token.objects.get(user=account).key
-            data['token'] = token
+            # token = Token.objects.get(user=account).key
+            # data['token'] = token
+
+            refresh = RefreshToken.for_user(account)
+            data['token'] = {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token)
+            }
 
         else:
             return Response(serializer.errors)
