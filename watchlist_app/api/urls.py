@@ -19,5 +19,6 @@ urlpatterns = [
     path('<int:pk>/review-create/',
          ReviewCreate.as_view(), name='review-create'),
     path('review/<int:pk>/', ReviewDetail.as_view(), name='review-detail'),
-    path('reviews/<str:username>/', UserReview.as_view(), name='user-review-detail'),
+    path('reviews/<str:username>/', UserReview.as_view(),
+         name='user-review-detail'),
 ]
